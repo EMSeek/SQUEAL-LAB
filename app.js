@@ -6,10 +6,14 @@ const port = 3000;
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  return res.send("<html><head><title>Blog CMS v0.101</title></head><body><a href='/route1/1'>First post</a></body></html>");
+});
+
 // Route 1: GET /route1/:id
 app.get('/route1/:id', (req, res) => {
   const id = req.params.id;
-  db.get("SELECT * FROM posts WHERE id = ?", [id], (err, row) => {
+  db.get("SELECT * FROM posts WHERE id = " +id, (err, row) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
@@ -21,7 +25,7 @@ app.get('/route1/:id', (req, res) => {
 // Route 2: POST /route2
 app.post('/route2', (req, res) => {
   const id = req.body.id;
-  db.get("SELECT * FROM posts WHERE id = ?", [id], (err, row) => {
+  db.get("SELECT * FROM posts WHERE id = " + id, (err, row) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
@@ -33,7 +37,7 @@ app.post('/route2', (req, res) => {
 // Route 3: POST /route3
 app.post('/route3', (req, res) => {
   const id = req.body.id;
-  db.get("SELECT * FROM posts WHERE id = ?", [id], (err, row) => {
+  db.get("SELECT * FROM posts WHERE id = "+id, (err, row) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
