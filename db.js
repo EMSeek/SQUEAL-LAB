@@ -14,8 +14,13 @@ db.serialize(() => {
   stmt.run("user2", password);
   stmt.finalize();
 
-  stmt =  db.prepare("INSERT INTO posts (user_id, content) values (1, 'Hello world!'");
-  stmt.run();
+  stmt =  db.prepare("INSERT INTO posts (user_id, content) values (?, ?)");
+  stmt.run(1,"Hello World!");
+  stmt.run(1,"Welcome to my blog, this is a test");
+  stmt.run(1,"Blogging is really hard, who knew");
+  stmt.run(1,"I'm quitting blogging to become a tiktok superstar instead!");
+  stmt.run(2,"Hello World!");
+  stmt.run(2,"Lorem ipsum somthing something");
   stmt.finalize();
   
 });
