@@ -5,6 +5,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   return res.send("<html><head><title>Blog CMS v0.101</title></head><body><a href='/route1/1'>First post</a></body></html>");
@@ -25,6 +26,7 @@ app.get('/route1/:id', (req, res) => {
 // Route 2: POST /route2
 app.post('/route2', (req, res) => {
   const id = req.body.id;
+  console.log("SELECT * FROM posts WHERE id = " + id + "["+req.body+"]");
   db.get("SELECT * FROM posts WHERE id = " + id, (err, row) => {
     if (err) {
       res.status(500).json({ error: err.message });
