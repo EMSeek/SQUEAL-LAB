@@ -49,7 +49,7 @@ app.post('/route3', (req, res) => {
       var fs = require('fs');
       var dataToWrite = JSON.stringify(row)
       
-      fs.writeFile('files/export.json', dataToWrite, 'utf8', function (err) {
+      fs.writeFile('files/export.json', '' + dataToWrite, 'utf8', function (err) {
         if (err) {
           console.log('Some error occured - file either not saved or corrupted file saved.');
         } else{
