@@ -23,6 +23,7 @@ git clone https://github.com/sqlmapproject/sqlmap
 In a new terminal, run the following commands:
 ```
 cd ~/lab/SQUEAL-LAB
+npm install package.json
 node app.js
 ```
 
