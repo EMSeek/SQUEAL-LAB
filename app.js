@@ -25,8 +25,10 @@ app.get('/route1/:id', (req, res) => {
 });
 
 // Route 2: POST /route2
-app.post('/route2', (req, res) => {
+app.post('/route2', async function(req, res) {
   const id = req.body.id;
+  // Simulate computational stuff here...
+  await sleep(110);
   db.get("SELECT * FROM posts WHERE id = " + id, (err, row) => {
     if (err) {
       res.status(500).json({ error: "there was an error" });
@@ -62,3 +64,9 @@ app.post('/route3', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
